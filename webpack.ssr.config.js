@@ -45,7 +45,7 @@ Encore.setPublicPath('/ssr')
 | entrypoints.
 |
 */
-Encore.addEntry('ssr', './resources/js/ssr.js')
+Encore.addEntry('ssr', './resources/js/ssr.tsx')
 
 /*
 |--------------------------------------------------------------------------

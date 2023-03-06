@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/inertia-react'
 import { InertiaProgress } from '@inertiajs/progress'
 
+import '../css/app.scss'
+
 InertiaProgress.init()
 
 createInertiaApp({
