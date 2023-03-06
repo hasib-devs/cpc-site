@@ -1,8 +1,28 @@
 /******/ var __webpack_modules__ = ({
 
-/***/ "./resources/js/Pages/Home.jsx":
+/***/ "./resources/js/Pages/About.tsx":
+/*!**************************************!*\
+  !*** ./resources/js/Pages/About.tsx ***!
+  \**************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const About = props => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "About");
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (About);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Home.tsx":
 /*!*************************************!*\
-  !*** ./resources/js/Pages/Home.jsx ***!
+  !*** ./resources/js/Pages/Home.tsx ***!
   \*************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -27,8 +47,10 @@ const Home = () => {
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var map = {
-	"./Home": "./resources/js/Pages/Home.jsx",
-	"./Home.jsx": "./resources/js/Pages/Home.jsx"
+	"./About": "./resources/js/Pages/About.tsx",
+	"./About.tsx": "./resources/js/Pages/About.tsx",
+	"./Home": "./resources/js/Pages/Home.tsx",
+	"./Home.tsx": "./resources/js/Pages/Home.tsx"
 };
 
 
@@ -154,9 +176,9 @@ module.exports = require("react-dom/server");
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-/*!*****************************!*\
-  !*** ./resources/js/ssr.js ***!
-  \*****************************/
+/*!******************************!*\
+  !*** ./resources/js/ssr.tsx ***!
+  \******************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ render)
