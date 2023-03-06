@@ -6,6 +6,8 @@
     "outDir": "build",
     "rootDir": "./",
     "sourceMap": true,
+    "jsx": "react",
+    "experimentalDecorators": true,
     "paths": {
       "App/*": ["./app/*"],
       "Config/*": ["./config/*"],

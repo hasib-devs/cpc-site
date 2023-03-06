@@ -133,6 +133,9 @@ Encore.configureDevServerOptions((options) => {
 // Encore.enablePostCssLoader()
 // Encore.configureCssLoader(() => {})
 
+Encore.enableReactPreset()
+Encore.enableBabelTypeScriptPreset()
+
 /*
 |--------------------------------------------------------------------------
 | Enable Vue loader

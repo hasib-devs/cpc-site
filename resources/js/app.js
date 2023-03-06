@@ -1,14 +1,13 @@
-import '../css/app.css'
-
 import React from 'react'
-import ReactDOMServer from 'react-dom/server'
+import { createRoot } from 'react-dom/client'
 import { createInertiaApp } from '@inertiajs/inertia-react'
+import { InertiaProgress } from '@inertiajs/progress'
 
-export default function render(page) {
-  return createInertiaApp({
-    page,
-    render: ReactDOMServer.renderToString,
-    resolve: (name) => require(`./Pages/${name}`),
-    setup: ({ App, props }) => <App {...props} />,
-  })
-}
+InertiaProgress.init()
+
+createInertiaApp({
+  resolve: (name) => require(`./Pages/${name}`),
+  setup({ el, App, props }) {
+    createRoot(el).render(<App {...props} />)
+  },
+})
