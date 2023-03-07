@@ -1,4 +1,20 @@
 {
   "assets/app.css": "http://localhost:8080/assets/app.css",
-  "assets/app.js": "http://localhost:8080/assets/app.js"
+  "assets/app.js": "http://localhost:8080/assets/app.js",
+  "assets/images/brand-icons.svg": "http://localhost:8080/assets/images/brand-icons.6729d297.svg",
+  "assets/images/icons.svg": "http://localhost:8080/assets/images/icons.62d9dae4.svg",
+  "assets/images/outline-icons.svg": "http://localhost:8080/assets/images/outline-icons.9c4845b4.svg",
+  "assets/fonts/icons.eot": "http://localhost:8080/assets/fonts/icons.a01e3f2d.eot",
+  "assets/fonts/icons.ttf": "http://localhost:8080/assets/fonts/icons.c656b8ca.ttf",
+  "assets/fonts/brand-icons.eot": "http://localhost:8080/assets/fonts/brand-icons.d68fa3e6.eot",
+  "assets/fonts/brand-icons.ttf": "http://localhost:8080/assets/fonts/brand-icons.65a2fb6d.ttf",
+  "assets/fonts/brand-icons.woff": "http://localhost:8080/assets/fonts/brand-icons.cac87dc0.woff",
+  "assets/fonts/brand-icons.woff2": "http://localhost:8080/assets/fonts/brand-icons.278156e4.woff2",
+  "assets/fonts/icons.woff": "http://localhost:8080/assets/fonts/icons.425399f8.woff",
+  "assets/fonts/icons.woff2": "http://localhost:8080/assets/fonts/icons.38c6d8ba.woff2",
+  "assets/fonts/outline-icons.eot": "http://localhost:8080/assets/fonts/outline-icons.752905fa.eot",
+  "assets/fonts/outline-icons.ttf": "http://localhost:8080/assets/fonts/outline-icons.53671035.ttf",
+  "assets/images/flags.png": "http://localhost:8080/assets/images/flags.99f63ae7.png",
+  "assets/fonts/outline-icons.woff": "http://localhost:8080/assets/fonts/outline-icons.ddae9b1b.woff",
+  "assets/fonts/outline-icons.woff2": "http://localhost:8080/assets/fonts/outline-icons.687a4990.woff2"
 }
