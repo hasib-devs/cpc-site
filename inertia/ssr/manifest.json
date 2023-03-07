@@ -1,3 +1,20 @@
 {
-  "ssr/ssr.js": "autossr.js"
+  "ssr/ssr.css": "autossr.css",
+  "ssr/ssr.js": "autossr.js",
+  "ssr/images/brand-icons.svg": "autoimages/brand-icons.6729d297.svg",
+  "ssr/images/icons.svg": "autoimages/icons.62d9dae4.svg",
+  "ssr/images/outline-icons.svg": "autoimages/outline-icons.9c4845b4.svg",
+  "ssr/fonts/icons.eot": "autofonts/icons.a01e3f2d.eot",
+  "ssr/fonts/icons.ttf": "autofonts/icons.c656b8ca.ttf",
+  "ssr/fonts/brand-icons.eot": "autofonts/brand-icons.d68fa3e6.eot",
+  "ssr/fonts/brand-icons.ttf": "autofonts/brand-icons.65a2fb6d.ttf",
+  "ssr/fonts/brand-icons.woff": "autofonts/brand-icons.cac87dc0.woff",
+  "ssr/fonts/brand-icons.woff2": "autofonts/brand-icons.278156e4.woff2",
+  "ssr/fonts/icons.woff": "autofonts/icons.425399f8.woff",
+  "ssr/fonts/icons.woff2": "autofonts/icons.38c6d8ba.woff2",
+  "ssr/fonts/outline-icons.eot": "autofonts/outline-icons.752905fa.eot",
+  "ssr/fonts/outline-icons.ttf": "autofonts/outline-icons.53671035.ttf",
+  "ssr/images/flags.png": "autoimages/flags.99f63ae7.png",
+  "ssr/fonts/outline-icons.woff": "autofonts/outline-icons.ddae9b1b.woff",
+  "ssr/fonts/outline-icons.woff2": "autofonts/outline-icons.687a4990.woff2"
 }

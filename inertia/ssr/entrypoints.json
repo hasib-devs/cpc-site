@@ -1,6 +1,9 @@
 {
   "entrypoints": {
     "ssr": {
+      "css": [
+        "auto/ssr.css"
+      ],
       "js": [
         "auto/ssr.js"
       ]
