@@ -2,9 +2,7 @@ import React from 'react'
 import { Button } from 'semantic-ui-react'
 import { Link } from '@inertiajs/inertia-react'
 
-type Props = {}
-
-const Dashboard = (props: Props) => {
+const Dashboard = () => {
   return (
     <div>
       <h1>Dashboard</h1>

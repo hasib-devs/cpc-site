@@ -2,9 +2,7 @@ import React from 'react'
 import { Button, Checkbox, Form, Header, Icon, Input } from 'semantic-ui-react'
 import { useForm } from '@inertiajs/inertia-react'
 
-type Props = {}
-
-const Login = (props: Props) => {
+const Login = () => {
   const { data, setData, post, processing, errors } = useForm({
     email: '',
     password: '',

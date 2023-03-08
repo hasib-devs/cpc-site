@@ -1,9 +1,16 @@
 import React from 'react'
 
-type Props = {}
+type Props = {
+  children: React.ReactNode | React.ReactNode[]
+}
 
 const AdminLayout = (props: Props) => {
-  return <div>AdminLayout</div>
+  return (
+    <div>
+      <h1>AdminLayout</h1>
+      {props.children}
+    </div>
+  )
 }
 
 export default AdminLayout
