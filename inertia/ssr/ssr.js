@@ -72,7 +72,8 @@ const Login = props => {
     remember: false
   });
   const handleLogin = () => {
-    post('/admin/login');
+    // post('/admin/login')
+    console.log(data);
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "flex flex-col items-center mt-16"
@@ -106,6 +107,11 @@ const Login = props => {
     placeholder: "Enter your password",
     type: "password"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    checked: data.remember,
+    onChange: () => setData(prevState => ({
+      ...prevState,
+      remember: !prevState.remember
+    })),
     label: "Remember me"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
     type: "submit",

@@ -17,10 +17,17 @@ const Login = (props: Props) => {
   return (
     <section className="flex flex-col items-center mt-16">
       <div className="w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6">
-        <div className="border rounded p-6">
+        <div className="border rounded p-8">
+          <pre className="break-words">{JSON.stringify(errors)}</pre>
+          <p>{JSON.stringify(Boolean(errors.email))}</p>
+          <p>{JSON.stringify(Boolean(errors.password))}</p>
           <Header as="h2" className="text-center mb-4">
             Login
           </Header>
+
+          {errors['invalid'] && (
+            <div className="text-red-500 text italic mt-1">{errors['invalid'][0]}</div>
+          )}
 
           <Form onSubmit={handleLogin} loading={processing}>
             <Form.Field>
@@ -33,7 +40,11 @@ const Login = (props: Props) => {
                 placeholder="Enter your email"
                 autoFocus
                 type="email"
+                error={Boolean(errors.email)}
               />
+              {errors.email && (
+                <div className="text-red-500 text italic mt-1">{errors.email[0]}</div>
+              )}
             </Form.Field>
             <Form.Field>
               <label>Password</label>
@@ -44,12 +55,25 @@ const Login = (props: Props) => {
                 iconPosition="left"
                 placeholder="Enter your password"
                 type="password"
+                error={Boolean(errors.password)}
               />
+              {errors.password && (
+                <div className="text-red-500 text italic mt-1">{errors.password[0]}</div>
+              )}
             </Form.Field>
             <Form.Field>
-              <Checkbox label="Remember me" />
+              <Checkbox
+                checked={data.remember}
+                onChange={() =>
+                  setData((prevState) => ({
+                    ...prevState,
+                    remember: !prevState.remember,
+                  }))
+                }
+                label="Remember me"
+              />
             </Form.Field>
-            <Button type="submit" color="blue" fluid>
+            <Button disabled={!data.email || !data.password} type="submit" color="blue" fluid>
               Login
             </Button>
           </Form>

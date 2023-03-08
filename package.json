@@ -83,6 +83,7 @@
     "@inertiajs/inertia": "^0.11.1",
     "@inertiajs/inertia-react": "^0.8.1",
     "@inertiajs/progress": "^0.2.7",
+    "classnames": "^2.3.2",
     "luxon": "^3.3.0",
     "mysql2": "^3.2.0",
     "pg": "^8.9.0",
