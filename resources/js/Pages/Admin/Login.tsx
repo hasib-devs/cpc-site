@@ -18,9 +18,6 @@ const Login = (props: Props) => {
     <section className="flex flex-col items-center mt-16">
       <div className="w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6">
         <div className="border rounded p-8">
-          <pre className="break-words">{JSON.stringify(errors)}</pre>
-          <p>{JSON.stringify(Boolean(errors.email))}</p>
-          <p>{JSON.stringify(Boolean(errors.password))}</p>
           <Header as="h2" className="text-center mb-4">
             Login
           </Header>

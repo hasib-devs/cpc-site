@@ -1,30 +1,21 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
-import { schema, rules } from '@ioc:Adonis/Core/Validator'
+import { BaseLoginValidator } from 'App/Validators/AuthValidator'
 
 export default class WebAuthsController {
-  public async adminLogin({ inertia }: HttpContextContract) {
+  public async adminLogin({ inertia, response, auth, session }: HttpContextContract) {
+    if (await auth.use('admin').check()) {
+      session.flash('message', 'You are already logged in')
+      return response.redirect().toRoute('admin.dashboard')
+    }
     return inertia.render('Admin/Login')
   }
 
   public async adminLoginPost({ response, request, auth, inertia, session }: HttpContextContract) {
-    const loginSchema = schema.create({
-      email: schema.string({ trim: true }, [rules.email()]),
-      password: schema.string({ trim: true }, [rules.minLength(6), rules.regex(/[a-zA-Z]+[0-9]+/)]),
-    })
-    const payload = await request.validate({
-      schema: loginSchema,
-      messages: {
-        'email.required': 'Email is required',
-        'email.email': 'Email is not valid',
-        'password.required': 'Password is required',
-        'password.minLength': 'Password must be at least 6 characters',
-        'password.regex': 'Password must contain at least one letter and one number',
-      },
-    })
+    const payload = await request.validate(BaseLoginValidator)
 
     try {
-      await auth.use('admin').attempt(payload.email, payload.password)
-      return response.redirect('/admin')
+      await auth.use('admin').attempt(payload.email, payload.password, !!payload.remember)
+      return response.redirect().toRoute('admin.dashboard')
     } catch (error) {
       if (error.responseText.includes('E_INVALID_AUTH_UID')) {
         session.flash('errors', { email: ['Email not found'] })
@@ -38,5 +29,10 @@ export default class WebAuthsController {
       session.flash('errors', { invalid: ['Something went wrong'] })
       return inertia.redirectBack()
     }
+  }
+
+  public async adminLogout({ auth, response }: HttpContextContract) {
+    await auth.use('admin').logout()
+    return response.redirect().toRoute('admin.login')
   }
 }
