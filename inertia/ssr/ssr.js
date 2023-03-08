@@ -13,7 +13,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
-const About = props => {
+const About = () => {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "About");
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (About);
@@ -32,9 +32,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "@inertiajs/inertia-react");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
 
-const Dashboard = props => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Dashboard");
+
+
+const Dashboard = () => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("h1", null, "Dashboard"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    href: "/admin/logout",
+    method: "post"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, null, "Logout")));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Dashboard);
 
@@ -59,7 +68,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const Login = props => {
+const Login = () => {
   const {
     data,
     setData,
@@ -71,42 +80,52 @@ const Login = props => {
     password: '',
     remember: false
   });
+  const [showPassword, setShowPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const handleLogin = () => {
-    // post('/admin/login')
-    console.log(data);
+    post('/admin/login');
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "flex flex-col items-center mt-16"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
-    className: "border rounded p-6"
+    className: "border rounded p-8"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
     as: "h2",
     className: "text-center mb-4"
-  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form, {
+  }, "Login"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form, {
     onSubmit: handleLogin,
-    loading: processing
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    loading: processing,
+    size: "large"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
     value: data.email,
     onChange: e => setData('email', e.target.value),
-    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
-      name: "at"
-    }),
-    iconPosition: "left",
     placeholder: "Enter your email",
     autoFocus: true,
-    type: "email"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    type: "email",
+    error: Boolean(errors.email)
+  }), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.email[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
     value: data.password,
     onChange: e => setData('password', e.target.value),
     icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
-      name: "key"
+      name: showPassword ? 'eye slash' : 'eye',
+      link: true,
+      onClick: () => setShowPassword(prev => !prev)
     }),
-    iconPosition: "left",
     placeholder: "Enter your password",
-    type: "password"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    type: showPassword ? 'text' : 'password',
+    error: Boolean(errors.password)
+  }), errors.password && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
     checked: data.remember,
     onChange: () => setData(prevState => ({
       ...prevState,
@@ -114,10 +133,258 @@ const Login = props => {
     })),
     label: "Remember me"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    disabled: !data.email || !data.password,
     type: "submit",
     color: "blue",
     fluid: true
   }, "Login")))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/Login.tsx":
+/*!*******************************************!*\
+  !*** ./resources/js/Pages/Auth/Login.tsx ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "@inertiajs/inertia-react");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const Login = () => {
+  const {
+    data,
+    setData,
+    post,
+    processing,
+    errors
+  } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    email: '',
+    password: '',
+    remember: false
+  });
+  const [showPassword, setShowPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const handleLogin = () => {
+    post('/login');
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+    className: "flex flex-col items-center mt-16"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "border rounded p-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
+    as: "h2",
+    className: "text-center mb-4"
+  }, "Login"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form, {
+    onSubmit: handleLogin,
+    loading: processing,
+    size: "large"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.email,
+    onChange: e => setData('email', e.target.value),
+    placeholder: "Enter your email",
+    autoFocus: true,
+    type: "email",
+    error: Boolean(errors.email)
+  }), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.email[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.password,
+    onChange: e => setData('password', e.target.value),
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+      name: showPassword ? 'eye slash' : 'eye',
+      link: true,
+      onClick: () => setShowPassword(prev => !prev)
+    }),
+    placeholder: "Enter your password",
+    type: showPassword ? 'text' : 'password',
+    error: Boolean(errors.password)
+  }), errors.password && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    checked: data.remember,
+    onChange: () => setData(prevState => ({
+      ...prevState,
+      remember: !prevState.remember
+    })),
+    label: "Remember me"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    disabled: !data.email || !data.password,
+    type: "submit",
+    color: "blue",
+    fluid: true
+  }, "Login")))));
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/Signup.tsx":
+/*!********************************************!*\
+  !*** ./resources/js/Pages/Auth/Signup.tsx ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "@inertiajs/inertia-react");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+const options = [{
+  key: 'm',
+  text: 'Male',
+  value: 'male'
+}, {
+  key: 'f',
+  text: 'Female',
+  value: 'female'
+}, {
+  key: 'o',
+  text: 'Other',
+  value: 'other'
+}];
+const Login = () => {
+  const {
+    data,
+    setData,
+    post,
+    processing,
+    errors
+  } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
+    first_name: '',
+    last_name: '',
+    gender: '',
+    email: '',
+    password: '',
+    confirm_password: '',
+    accept_terms: false
+  });
+  const [showPassword, setShowPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const [showConfirmPassword, setShowConfirmPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  const handleSignup = () => {
+    post('/login');
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+    className: "flex flex-col items-center mt-16"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "border rounded p-8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
+    as: "h2",
+    className: "text-center mb-4"
+  }, "Signup"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form, {
+    onSubmit: handleSignup,
+    loading: processing,
+    size: "large",
+    autoComplete: "off"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Group, {
+    widths: "equal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.first_name,
+    onChange: e => setData('first_name', e.target.value),
+    fluid: true,
+    placeholder: "First name"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.last_name,
+    onChange: e => setData('last_name', e.target.value),
+    fluid: true,
+    placeholder: "Last name"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Select, {
+    value: data.gender,
+    onChange: (_, {
+      value
+    }) => setData('gender', value),
+    fluid: true,
+    options: options,
+    placeholder: "Gender"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.email,
+    onChange: e => setData('email', e.target.value),
+    placeholder: "Enter your email",
+    autoFocus: true,
+    type: "email",
+    error: Boolean(errors.email)
+  }), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.email[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.password,
+    onChange: e => setData('password', e.target.value),
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+      name: showPassword ? 'eye slash' : 'eye',
+      link: true,
+      onClick: () => setShowPassword(prev => !prev)
+    }),
+    type: showPassword ? 'text' : 'password',
+    placeholder: "Enter your password",
+    error: Boolean(errors.password)
+  }), errors.password && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    required: true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Confirm Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
+    value: data.password,
+    onChange: e => setData('password', e.target.value),
+    icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
+      name: showConfirmPassword ? 'eye slash' : 'eye',
+      link: true,
+      onClick: () => setShowConfirmPassword(prev => !prev)
+    }),
+    placeholder: "Confirm your password",
+    type: showConfirmPassword ? 'text' : 'password',
+    error: Boolean(errors.password)
+  }), errors.password && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    checked: data.accept_terms,
+    onChange: () => setData(prevState => ({
+      ...prevState,
+      accept_terms: !prevState.accept_terms
+    })),
+    label: "Accept Terms and Conditions"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    type: "submit",
+    color: "blue",
+    fluid: true
+  }, "Signup")))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
 
@@ -133,16 +400,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
-/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-react */ "@inertiajs/inertia-react");
+/* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! semantic-ui-react */ "semantic-ui-react");
+/* harmony import */ var semantic_ui_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__);
+
 
 
 const Home = () => {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", {
-    className: ""
-  }, "Home page"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, null, "Click Here"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+    className: "flex justify-between mt-20"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Header, {
+    as: "h1"
+  }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    href: "/auth"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    primary: true
+  }, "Login"))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
@@ -173,6 +449,10 @@ var map = {
 	"./Admin/Dashboard.tsx": "./resources/js/Pages/Admin/Dashboard.tsx",
 	"./Admin/Login": "./resources/js/Pages/Admin/Login.tsx",
 	"./Admin/Login.tsx": "./resources/js/Pages/Admin/Login.tsx",
+	"./Auth/Login": "./resources/js/Pages/Auth/Login.tsx",
+	"./Auth/Login.tsx": "./resources/js/Pages/Auth/Login.tsx",
+	"./Auth/Signup": "./resources/js/Pages/Auth/Signup.tsx",
+	"./Auth/Signup.tsx": "./resources/js/Pages/Auth/Signup.tsx",
 	"./Home": "./resources/js/Pages/Home.tsx",
 	"./Home.tsx": "./resources/js/Pages/Home.tsx"
 };
@@ -226,6 +506,16 @@ module.exports = require("react");
 /***/ ((module) => {
 
 module.exports = require("react-dom/server");
+
+/***/ }),
+
+/***/ "react-hot-toast":
+/*!**********************************!*\
+  !*** external "react-hot-toast" ***!
+  \**********************************/
+/***/ ((module) => {
+
+module.exports = require("react-hot-toast");
 
 /***/ }),
 
@@ -324,11 +614,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "@inertiajs/inertia-react");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _css_app_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../css/app.scss */ "./resources/css/app.scss");
+/* harmony import */ var react_hot_toast__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-hot-toast */ "react-hot-toast");
+/* harmony import */ var react_hot_toast__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(react_hot_toast__WEBPACK_IMPORTED_MODULE_4__);
 
 
 
 
 // import { InertiaProgress } from '@inertiajs/progress'
+
 
 
 
@@ -342,8 +635,13 @@ function render(page) {
     setup: ({
       App,
       props
-    }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, props)
+    }) => /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(Root, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(App, props))
   });
+}
+function Root({
+  children
+}) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, children, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_hot_toast__WEBPACK_IMPORTED_MODULE_4__.Toaster, null));
 }
 })();
 

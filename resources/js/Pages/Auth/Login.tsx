@@ -12,7 +12,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   const handleLogin = () => {
-    post('/admin/login')
+    post('/login')
   }
   return (
     <section className="flex flex-col items-center mt-16">
