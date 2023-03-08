@@ -795,6 +795,9 @@ video {
 .mt-16{
   margin-top: 4rem;
 }
+.mb-4{
+  margin-bottom: 1rem;
+}
 .flex{
   display: flex;
 }
@@ -818,6 +821,9 @@ video {
 }
 .p-6{
   padding: 1.5rem;
+}
+.text-center{
+  text-align: center;
 }
 .text-lg{
   font-size: 1.125rem;
