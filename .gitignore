@@ -8,3 +8,4 @@ tmp
 
 yarn.lock
 package-lock.json
+public/assets/*
