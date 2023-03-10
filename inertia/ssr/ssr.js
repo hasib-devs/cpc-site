@@ -204,6 +204,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const Login = () => {
   const {
+    info
+  } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props;
+  const {
     data,
     setData,
     post,
@@ -218,13 +221,17 @@ const Login = () => {
   const handleLogin = () => {
     post('/login');
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "flex flex-col items-center mt-16"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "border rounded p-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
+  }, info?.verifyEmailMessage && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Message, {
+    success: true,
+    header: "Account created successfully",
+    content: "Please verify your email address"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
     as: "h2",
     className: "text-center mb-4"
   }, "Login"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -273,10 +280,10 @@ const Login = () => {
     fluid: true
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "mt-4 text-center"
-  }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, "Don't have any account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
     href: "/signup",
     className: "text-blue-500 ml-2"
-  }, "Signup"))))));
+  }, "Please Signup")))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
 
@@ -342,18 +349,18 @@ const Login = () => {
     processing,
     errors
   } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     gender: '',
     email: '',
     password: '',
-    confirm_password: '',
-    accept_terms: false
+    confirmPassword: '',
+    acceptTerms: false
   });
   const [showPassword, setShowPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [showConfirmPassword, setShowConfirmPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const handleSignup = () => {
-    post('/login');
+    post('/signup');
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "flex flex-col items-center mt-16"
@@ -376,15 +383,15 @@ const Login = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "First Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-    value: data.first_name,
-    onChange: e => setData('first_name', e.target.value),
+    value: data.firstName,
+    onChange: e => setData('firstName', e.target.value),
     fluid: true,
     placeholder: "First name"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-    value: data.last_name,
-    onChange: e => setData('last_name', e.target.value),
+    value: data.lastName,
+    onChange: e => setData('lastName', e.target.value),
     fluid: true,
     placeholder: "Last name"
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
@@ -396,8 +403,11 @@ const Login = () => {
     }) => setData('gender', value),
     fluid: true,
     options: options,
-    placeholder: "Gender"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+    placeholder: "Gender",
+    error: Boolean(errors.gender)
+  }), errors.gender && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.gender[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
     value: data.email,
@@ -426,8 +436,8 @@ const Login = () => {
   }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Confirm Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
-    value: data.password,
-    onChange: e => setData('password', e.target.value),
+    value: data.confirmPassword,
+    onChange: e => setData('confirmPassword', e.target.value),
     icon: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Icon, {
       name: showConfirmPassword ? 'eye slash' : 'eye',
       link: true,
@@ -435,14 +445,14 @@ const Login = () => {
     }),
     placeholder: "Confirm your password",
     type: showConfirmPassword ? 'text' : 'password',
-    error: Boolean(errors.password)
-  }), errors.password && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    error: Boolean(errors.confirmPassword)
+  }), errors.confirmPassword && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
-  }, errors.password[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
-    checked: data.accept_terms,
+  }, errors.confirmPassword[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Checkbox, {
+    checked: data.acceptTerms,
     onChange: () => setData(prevState => ({
       ...prevState,
-      accept_terms: !prevState.accept_terms
+      acceptTerms: !prevState.acceptTerms
     })),
     label: "Accept Terms and Conditions"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
@@ -454,7 +464,7 @@ const Login = () => {
   }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
     href: "/login",
     className: "text-blue-500 ml-2"
-  }, "Login"))))));
+  }, "Please Login"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
 

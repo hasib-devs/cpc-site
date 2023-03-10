@@ -10,13 +10,13 @@ const options = [
 
 const Login = () => {
   const { data, setData, post, processing, errors } = useForm({
-    first_name: '',
-    last_name: '',
+    firstName: '',
+    lastName: '',
     gender: '',
     email: '',
     password: '',
-    confirm_password: '',
-    accept_terms: false,
+    confirmPassword: '',
+    acceptTerms: false,
   })
 
   const [showPassword, setShowPassword] = useState(false)
@@ -24,7 +24,7 @@ const Login = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   const handleSignup = () => {
-    post('/login')
+    post('/signup')
   }
   return (
     <section className="flex flex-col items-center mt-16">
@@ -43,8 +43,8 @@ const Login = () => {
               <Form.Field required>
                 <label>First Name</label>
                 <Input
-                  value={data.first_name}
-                  onChange={(e) => setData('first_name', e.target.value)}
+                  value={data.firstName}
+                  onChange={(e) => setData('firstName', e.target.value)}
                   fluid
                   placeholder="First name"
                 />
@@ -52,8 +52,8 @@ const Login = () => {
               <Form.Field required>
                 <label>Last Name</label>
                 <Input
-                  value={data.last_name}
-                  onChange={(e) => setData('last_name', e.target.value)}
+                  value={data.lastName}
+                  onChange={(e) => setData('lastName', e.target.value)}
                   fluid
                   placeholder="Last name"
                 />
@@ -68,7 +68,11 @@ const Login = () => {
                 fluid
                 options={options}
                 placeholder="Gender"
+                error={Boolean(errors.gender)}
               />
+              {errors.gender && (
+                <div className="text-red-500 text italic mt-1">{errors.gender[0]}</div>
+              )}
             </Form.Field>
             <Form.Field required>
               <label>Email</label>
@@ -107,8 +111,8 @@ const Login = () => {
             <Form.Field required>
               <label>Confirm Password</label>
               <Input
-                value={data.password}
-                onChange={(e) => setData('password', e.target.value)}
+                value={data.confirmPassword}
+                onChange={(e) => setData('confirmPassword', e.target.value)}
                 icon={
                   <Icon
                     name={showConfirmPassword ? 'eye slash' : 'eye'}
@@ -118,19 +122,19 @@ const Login = () => {
                 }
                 placeholder="Confirm your password"
                 type={showConfirmPassword ? 'text' : 'password'}
-                error={Boolean(errors.password)}
+                error={Boolean(errors.confirmPassword)}
               />
-              {errors.password && (
-                <div className="text-red-500 text italic mt-1">{errors.password[0]}</div>
+              {errors.confirmPassword && (
+                <div className="text-red-500 text italic mt-1">{errors.confirmPassword[0]}</div>
               )}
             </Form.Field>
             <Form.Field>
               <Checkbox
-                checked={data.accept_terms}
+                checked={data.acceptTerms}
                 onChange={() =>
                   setData((prevState) => ({
                     ...prevState,
-                    accept_terms: !prevState.accept_terms,
+                    acceptTerms: !prevState.acceptTerms,
                   }))
                 }
                 label="Accept Terms and Conditions"
@@ -142,7 +146,7 @@ const Login = () => {
             <div className="mt-4 text-center">
               Already have an account?
               <Link href="/login" className="text-blue-500 ml-2">
-                Login
+                Please Login
               </Link>
             </div>
           </Form>

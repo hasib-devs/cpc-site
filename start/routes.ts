@@ -1,9 +1,7 @@
 // Web Routes
-import '../routes/web/web.route'
-import '../routes/web/admin.route'
-import '../routes/web/user.route'
+import '../routes/web/web.routes'
+import '../routes/web/admin.routes'
+import '../routes/web/user.routes'
 
 // Api Routes
 import '../routes/api/api.routes'
-import '../routes/api/v1/v1.api.routes'
-import '../routes/api/v1/user.routes'

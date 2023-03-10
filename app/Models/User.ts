@@ -13,11 +13,16 @@ export default class User extends BaseModel {
 
   @column()
   public firstName: string
+
   @column()
   public lastName: string
+
+  @column()
+  public gender: string
+
   @column()
   public phone: string
-  @column()
+
   @column()
   public email: string
 
@@ -31,11 +36,17 @@ export default class User extends BaseModel {
   })
   public username: string
 
+  @column()
+  public emailVerified: boolean
+
+  @column()
+  public phoneVerified: boolean
+
   @responsiveAttachment({ folder: 'cover-images' })
-  public coverImage: ResponsiveAttachmentContract
+  public coverImage: ResponsiveAttachmentContract | null
 
   @responsiveAttachment({ folder: 'profile-images' })
-  public profileImage: ResponsiveAttachmentContract
+  public profileImage: ResponsiveAttachmentContract | null
 
   @column()
   public rememberMeToken: string | null

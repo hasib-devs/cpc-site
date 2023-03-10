@@ -8,6 +8,7 @@ export default class extends BaseSeeder {
       {
         firstName: 'Hasibur',
         lastName: 'Rahman',
+        gender: 'male',
         email: 'hasib@test.com',
         password: '123456',
         phone: '01580919000',
@@ -15,6 +16,7 @@ export default class extends BaseSeeder {
       {
         firstName: 'Test',
         lastName: 'User',
+        gender: 'male',
         email: 'test@test.com',
         password: '123456',
       },

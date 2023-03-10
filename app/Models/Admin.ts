@@ -12,10 +12,13 @@ export default class Admin extends BaseModel {
 
   @column()
   public firstName: string
+
   @column()
   public lastName: string
+
   @column()
   public phone: string
+
   @column()
   public email: string
 

@@ -40,7 +40,8 @@
     "@adonisjs/mail",
     "adonis-responsive-attachment",
     "adonis-lucid-filter",
-    "@adonisjs/lucid-slugify"
+    "@adonisjs/lucid-slugify",
+    "./providers/MailProvider"
   ],
   "metaFiles": [
     {

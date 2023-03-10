@@ -12,6 +12,7 @@ import Inertia from '@ioc:EidelLev/Inertia'
 
 Inertia.share({
   errors: (ctx) => ctx.session.flashMessages.get('errors') || {},
+  info: (ctx) => ctx.session.flashMessages.get('info') || {},
   message: (ctx) => ctx.session.flashMessages.get('message') || '',
   params: (ctx) => ctx.params,
   query: (ctx) => ctx.request.qs(),
