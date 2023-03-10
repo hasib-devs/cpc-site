@@ -41,7 +41,8 @@
       "@adonisjs/lucid",
       "@adonisjs/auth",
       "@eidellev/inertia-adonisjs",
-      "@adonisjs/ally"
+      "@adonisjs/ally",
+      "@adonisjs/route-model-binding/build/adonis-typings"
     ]
   }
 }
