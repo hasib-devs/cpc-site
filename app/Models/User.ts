@@ -37,19 +37,19 @@ export default class User extends BaseModel {
   public username: string
 
   @column()
-  public emailVerified: boolean
+  public emailVerified: boolean = false
 
   @column()
-  public phoneVerified: boolean
+  public phoneVerified: boolean = false
 
   @responsiveAttachment({ folder: 'cover-images' })
-  public coverImage: ResponsiveAttachmentContract | null
+  public coverImage: ResponsiveAttachmentContract | null = null
 
   @responsiveAttachment({ folder: 'profile-images' })
-  public profileImage: ResponsiveAttachmentContract | null
+  public profileImage: ResponsiveAttachmentContract | null = null
 
   @column()
-  public rememberMeToken: string | null
+  public rememberMeToken: string | null = null
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
