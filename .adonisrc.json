@@ -5,7 +5,8 @@
     "@adonisjs/core/build/commands/index.js",
     "@adonisjs/repl/build/commands",
     "@adonisjs/lucid/build/commands",
-    "@eidellev/inertia-adonisjs/build/commands"
+    "@eidellev/inertia-adonisjs/build/commands",
+    "@adonisjs/mail/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -34,7 +35,8 @@
     "@adonisjs/auth",
     "@eidellev/inertia-adonisjs",
     "@adonisjs/ally",
-    "@adonisjs/route-model-binding/build/providers/RmbProvider"
+    "@adonisjs/route-model-binding/build/providers/RmbProvider",
+    "@adonisjs/mail"
   ],
   "metaFiles": [
     {

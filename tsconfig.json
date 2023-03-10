@@ -42,7 +42,8 @@
       "@adonisjs/auth",
       "@eidellev/inertia-adonisjs",
       "@adonisjs/ally",
-      "@adonisjs/route-model-binding/build/adonis-typings"
+      "@adonisjs/route-model-binding/build/adonis-typings",
+      "@adonisjs/mail"
     ]
   }
 }
