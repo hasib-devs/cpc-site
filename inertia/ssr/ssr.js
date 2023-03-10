@@ -143,6 +143,46 @@ const Login = () => {
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Admin/ResetPassword.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Admin/ResetPassword.tsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const ResetPassword = props => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "ResetPassword");
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResetPassword);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/ForgotPassword.tsx":
+/*!****************************************************!*\
+  !*** ./resources/js/Pages/Auth/ForgotPassword.tsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const ForgotPassword = props => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "ForgotPassword");
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForgotPassword);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Auth/Login.tsx":
 /*!*******************************************!*\
   !*** ./resources/js/Pages/Auth/Login.tsx ***!
@@ -231,12 +271,34 @@ const Login = () => {
     type: "submit",
     color: "blue",
     fluid: true
-  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Don't have any account? Please", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-4 text-center"
+  }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
     href: "/signup",
-    className: "text-teal-500"
-  }, "Signup"), ' ')))));
+    className: "text-blue-500 ml-2"
+  }, "Signup"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Auth/ResetPassword.tsx":
+/*!***************************************************!*\
+  !*** ./resources/js/Pages/Auth/ResetPassword.tsx ***!
+  \***************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+const ResetPassword = props => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "ResetPassword");
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResetPassword);
 
 /***/ }),
 
@@ -387,7 +449,12 @@ const Login = () => {
     type: "submit",
     color: "blue",
     fluid: true
-  }, "Signup")))));
+  }, "Signup"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "mt-4 text-center"
+  }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    href: "/login",
+    className: "text-blue-500 ml-2"
+  }, "Login"))))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
 
@@ -452,8 +519,14 @@ var map = {
 	"./Admin/Dashboard.tsx": "./resources/js/Pages/Admin/Dashboard.tsx",
 	"./Admin/Login": "./resources/js/Pages/Admin/Login.tsx",
 	"./Admin/Login.tsx": "./resources/js/Pages/Admin/Login.tsx",
+	"./Admin/ResetPassword": "./resources/js/Pages/Admin/ResetPassword.tsx",
+	"./Admin/ResetPassword.tsx": "./resources/js/Pages/Admin/ResetPassword.tsx",
+	"./Auth/ForgotPassword": "./resources/js/Pages/Auth/ForgotPassword.tsx",
+	"./Auth/ForgotPassword.tsx": "./resources/js/Pages/Auth/ForgotPassword.tsx",
 	"./Auth/Login": "./resources/js/Pages/Auth/Login.tsx",
 	"./Auth/Login.tsx": "./resources/js/Pages/Auth/Login.tsx",
+	"./Auth/ResetPassword": "./resources/js/Pages/Auth/ResetPassword.tsx",
+	"./Auth/ResetPassword.tsx": "./resources/js/Pages/Auth/ResetPassword.tsx",
 	"./Auth/Signup": "./resources/js/Pages/Auth/Signup.tsx",
 	"./Auth/Signup.tsx": "./resources/js/Pages/Auth/Signup.tsx",
 	"./Home": "./resources/js/Pages/Home.tsx",

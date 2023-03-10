@@ -77,12 +77,12 @@ const Login = () => {
               Login
             </Button>
 
-            <p>
-              Don't have any account? Please{' '}
-              <Link href="/signup" className="text-teal-500">
+            <div className="mt-4 text-center">
+              Already have an account?
+              <Link href="/signup" className="text-blue-500 ml-2">
                 Signup
-              </Link>{' '}
-            </p>
+              </Link>
+            </div>
           </Form>
         </div>
       </div>

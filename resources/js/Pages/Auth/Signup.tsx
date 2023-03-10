@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Header, Icon, Input, Select } from 'semantic-ui-react'
-import { useForm } from '@inertiajs/inertia-react'
+import { Link, useForm } from '@inertiajs/inertia-react'
 
 const options = [
   { key: 'm', text: 'Male', value: 'male' },
@@ -139,6 +139,12 @@ const Login = () => {
             <Button type="submit" color="blue" fluid>
               Signup
             </Button>
+            <div className="mt-4 text-center">
+              Already have an account?
+              <Link href="/login" className="text-blue-500 ml-2">
+                Login
+              </Link>
+            </div>
           </Form>
         </div>
       </div>

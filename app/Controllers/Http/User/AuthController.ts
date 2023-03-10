@@ -3,7 +3,7 @@ import { BaseLoginValidator } from 'App/Validators/AuthValidator'
 
 export default class WebAuthsController {
   // User Login Show
-  public async userLogin({ inertia, response, auth, session }: HttpContextContract) {
+  public async loginView({ inertia, response, auth, session }: HttpContextContract) {
     if (await auth.use('user').check()) {
       session.flash('message', 'You are already logged in')
       return response.redirect('/')
@@ -12,7 +12,7 @@ export default class WebAuthsController {
   }
 
   // User Login Post
-  public async userLoginPost({ response, request, auth, inertia, session }: HttpContextContract) {
+  public async login({ response, request, auth, inertia, session }: HttpContextContract) {
     const payload = await request.validate(BaseLoginValidator)
 
     try {
@@ -34,28 +34,22 @@ export default class WebAuthsController {
   }
 
   // User Logout
-  public async userLogout({ auth, response }: HttpContextContract) {
+  public async logout({ auth, response }: HttpContextContract) {
     await auth.use('user').logout()
-    return response.redirect().toRoute('user.login')
+    return response.redirect().toRoute('user.loginView')
   }
 
   // User Register Show
-  public async userSignup({ inertia, response, auth, session }: HttpContextContract) {
+  public async signupView({ inertia, response, auth, session }: HttpContextContract) {
     if (await auth.use('user').check()) {
       session.flash('message', 'You are already logged in')
-      return response.redirect().toRoute('user.dashboard')
+      return response.redirect().toRoute('/')
     }
     return inertia.render('Auth/Signup')
   }
 
   // User Register Post
-  public async userRegisterPost({
-    response,
-    request,
-    auth,
-    inertia,
-    session,
-  }: HttpContextContract) {
+  public async signup({ response, request, auth, inertia, session }: HttpContextContract) {
     const payload = await request.validate(BaseLoginValidator)
 
     try {
@@ -74,5 +68,21 @@ export default class WebAuthsController {
       session.flash('errors', { invalid: ['Something went wrong'] })
       return inertia.redirectBack()
     }
+  }
+
+  // Forgot Password
+  public async forgotPassword({}: HttpContextContract) {}
+
+  // Forgot Password view
+  public async forgotPasswordView({ inertia }: HttpContextContract) {
+    return inertia.render('Auth/ForgotPassword')
+  }
+
+  // Reset Password
+  public async resetPassword({}: HttpContextContract) {}
+
+  // Reset Password view
+  public async resetPasswordView({ inertia }: HttpContextContract) {
+    return inertia.render('Auth/ResetPassword')
   }
 }
