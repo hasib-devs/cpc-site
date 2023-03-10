@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Header, Icon, Input } from 'semantic-ui-react'
-import { useForm } from '@inertiajs/inertia-react'
+import { useForm, Link } from '@inertiajs/inertia-react'
 
 const Login = () => {
   const { data, setData, post, processing, errors } = useForm({
@@ -76,6 +76,13 @@ const Login = () => {
             <Button disabled={!data.email || !data.password} type="submit" color="blue" fluid>
               Login
             </Button>
+
+            <p>
+              Don't have any account? Please{' '}
+              <Link href="/signup" className="text-teal-500">
+                Signup
+              </Link>{' '}
+            </p>
           </Form>
         </div>
       </div>

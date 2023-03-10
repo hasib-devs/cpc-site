@@ -231,7 +231,10 @@ const Login = () => {
     type: "submit",
     color: "blue",
     fluid: true
-  }, "Login")))));
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Don't have any account? Please", ' ', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    href: "/signup",
+    className: "text-teal-500"
+  }, "Signup"), ' ')))));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
 
@@ -415,7 +418,7 @@ const Home = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Header, {
     as: "h1"
   }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-    href: "/auth"
+    href: "/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
     primary: true
   }, "Login"))));

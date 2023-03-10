@@ -7,6 +7,12 @@ export default class Admin extends BaseModel {
   public id: number
 
   @column()
+  public firstName: string
+  @column()
+  public lastName: string
+  @column()
+  public phone: string
+  @column()
   public email: string
 
   @column({ serializeAs: null })

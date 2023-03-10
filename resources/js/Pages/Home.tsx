@@ -7,7 +7,7 @@ const Home = () => {
     <Container>
       <div className="flex justify-between mt-20">
         <Header as="h1">Home</Header>
-        <Link href="/auth">
+        <Link href="/login">
           <Button primary>Login</Button>
         </Link>
       </div>
