@@ -6,7 +6,8 @@
     "@adonisjs/repl/build/commands",
     "@adonisjs/lucid/build/commands",
     "@eidellev/inertia-adonisjs/build/commands",
-    "@adonisjs/mail/build/commands"
+    "@adonisjs/mail/build/commands",
+    "adonis-lucid-filter/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
@@ -36,7 +37,10 @@
     "@eidellev/inertia-adonisjs",
     "@adonisjs/ally",
     "@adonisjs/route-model-binding/build/providers/RmbProvider",
-    "@adonisjs/mail"
+    "@adonisjs/mail",
+    "adonis-responsive-attachment",
+    "adonis-lucid-filter",
+    "@adonisjs/lucid-slugify"
   ],
   "metaFiles": [
     {

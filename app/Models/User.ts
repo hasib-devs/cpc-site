@@ -1,6 +1,11 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
 import { column, beforeSave, BaseModel } from '@ioc:Adonis/Lucid/Orm'
+import {
+  ResponsiveAttachmentContract,
+  responsiveAttachment,
+} from '@ioc:Adonis/Addons/ResponsiveAttachment'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 
 export default class User extends BaseModel {
   @column({ isPrimary: true })
@@ -18,6 +23,16 @@ export default class User extends BaseModel {
 
   @column({ serializeAs: null })
   public password: string
+
+  @column()
+  @slugify({
+    strategy: 'dbIncrement',
+    fields: ['firstName', 'lastName'],
+  })
+  @responsiveAttachment({ folder: 'cover-images' })
+  public coverImage: ResponsiveAttachmentContract
+  @responsiveAttachment({ folder: 'profile-images' })
+  public profileImage: ResponsiveAttachmentContract
 
   @column()
   public rememberMeToken: string | null

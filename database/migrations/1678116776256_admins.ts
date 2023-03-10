@@ -13,6 +13,9 @@ export default class extends BaseSchema {
       table.string('password', 180).notNullable()
       table.string('remember_me_token').nullable()
 
+      table.json('profile_image').nullable()
+      table.json('cover_image').nullable()
+
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
        */

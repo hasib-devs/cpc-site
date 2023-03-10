@@ -43,7 +43,10 @@
       "@eidellev/inertia-adonisjs",
       "@adonisjs/ally",
       "@adonisjs/route-model-binding/build/adonis-typings",
-      "@adonisjs/mail"
+      "@adonisjs/mail",
+      "adonis-responsive-attachment",
+      "adonis-lucid-filter",
+      "@adonisjs/lucid-slugify"
     ]
   }
 }
