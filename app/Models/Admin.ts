@@ -24,6 +24,7 @@ export default class Admin extends BaseModel {
 
   @responsiveAttachment({ folder: 'cover-images' })
   public coverImage: ResponsiveAttachmentContract
+
   @responsiveAttachment({ folder: 'profile-images' })
   public profileImage: ResponsiveAttachmentContract
 

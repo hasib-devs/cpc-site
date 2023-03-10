@@ -29,8 +29,11 @@ export default class User extends BaseModel {
     strategy: 'dbIncrement',
     fields: ['firstName', 'lastName'],
   })
+  public username: string
+
   @responsiveAttachment({ folder: 'cover-images' })
   public coverImage: ResponsiveAttachmentContract
+
   @responsiveAttachment({ folder: 'profile-images' })
   public profileImage: ResponsiveAttachmentContract
 
