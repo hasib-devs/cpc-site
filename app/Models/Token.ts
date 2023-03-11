@@ -28,15 +28,15 @@ export default class Token extends BaseModel {
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
 
-  public static async generatePasswordResetToken(user: User | null) {
+  public static async generate(user: User | null, type: string) {
     const token = string.generateRandom(64)
     if (!user) {
       return token
     }
 
-    await Token.expirePasswordResetToken(user)
+    await Token.expire(user)
     const record = await user.related('tokens').create({
-      type: 'password_reset',
+      type,
       token,
       expiresAt: DateTime.now().plus({ hours: 1 }),
     })
@@ -44,14 +44,15 @@ export default class Token extends BaseModel {
     return record.token
   }
 
-  public static async expirePasswordResetToken(user: User) {
+  public static async expire(user: User) {
     await user.related('passwordResetTokens').query().update({ expiresAt: DateTime.now() })
   }
 
-  public static async getPasswordResetUser(token: string) {
+  public static async getUser(token: string, type: string) {
     const record = await Token.query()
       .preload('user')
       .where('token', token)
+      .where('type', type)
       .where('expires_at', '>', DateTime.now().toSQL())
       .orderBy('expires_at', 'desc')
       .first()

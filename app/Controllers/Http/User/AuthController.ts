@@ -76,8 +76,11 @@ export default class WebAuthsController {
 
     try {
       const user = await User.create(
-        request.only(['firstName', 'lastName', 'email', 'phone', 'password', 'gender'])
+        request.only(['firstName', 'lastName', 'email', 'password', 'gender'])
       )
+
+      const token = await Token.generate(user, 'email-verify')
+      const verifyLink = Route.makeUrl('user.verifyEmail', [token])
 
       await Mail.sendLater(async (message) => {
         message
@@ -86,9 +89,7 @@ export default class WebAuthsController {
           .subject('Email Verification')
           .htmlView('emails/email-vefify', {
             user: user,
-            url: `http://localhost:3333/verify-email/${user.id}?token=${await Hash.make(
-              user.username
-            )}`,
+            url: `${Env.get('APP_DOMAIN')}${verifyLink}`,
           })
       })
 
@@ -102,6 +103,22 @@ export default class WebAuthsController {
     }
   }
 
+  // Verify Email
+  @bind()
+  public async verifyEmail({ response, params, auth }: HttpContextContract) {
+    const user = await Token.getUser(params.token, 'email-verify')
+
+    if (!user) {
+      return response.redirect().toRoute('user.loginView')
+    }
+
+    await user.merge({ emailVerified: true }).save()
+    await Token.expire(user)
+    await auth.login(user)
+
+    return response.redirect('/')
+  }
+
   // Forgot Password
   public async forgotPassword({ inertia, request, session }: HttpContextContract) {
     const { email } = await request.validate({
@@ -111,7 +128,7 @@ export default class WebAuthsController {
     })
 
     const user = await User.findBy('email', email)
-    const token = await Token.generatePasswordResetToken(user)
+    const token = await Token.generate(user, 'password-reset')
 
     const resetLink = Route.makeUrl('user.resetPasswordView', [token])
 
@@ -150,7 +167,7 @@ export default class WebAuthsController {
       }),
     })
 
-    const user = await Token.getPasswordResetUser(token)
+    const user = await Token.getUser(token, 'password-reset')
 
     if (!user) {
       session.flash('info', {
@@ -161,6 +178,7 @@ export default class WebAuthsController {
     }
 
     await user.merge({ password }).save()
+    await Token.expire(user)
 
     return response.redirect().toRoute('user.loginView')
   }
@@ -171,22 +189,5 @@ export default class WebAuthsController {
     const isValid = await Token.verify(token)
 
     return inertia.render('Auth/ResetPassword', { isValid, token })
-  }
-
-  // Verify Email
-  @bind()
-  public async verifyEmail({ response, request }: HttpContextContract, user: User) {
-    const token = request.input('token')
-    console.log({ token, username: user.username })
-
-    const verified = await Hash.verify(token, user.username)
-    if (verified) {
-      user.emailVerified = true
-      await user.save()
-
-      return response.redirect('/')
-    }
-
-    return response.badRequest('Invalid Token')
   }
 }

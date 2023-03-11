@@ -24,7 +24,7 @@ Route.group(() => {
   Route.post('logout', 'AuthController.logout').as('user.logout')
 
   // Email Verification
-  Route.get('verify-email/:userId/', 'AuthController.verifyEmail').as('user.verifyEmail')
+  Route.get('verify-email/:token', 'AuthController.verifyEmail').as('user.verifyEmail')
 
   // Authenticated Only Routes
   Route.group(() => {}).middleware('auth:user')
