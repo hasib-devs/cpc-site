@@ -8,7 +8,10 @@ export class BaseLoginValidator extends BaseValidator {
   }
 
   public schema = schema.create({
-    email: schema.string({ trim: true }, [rules.email()]),
+    email: schema.string({ trim: true }, [
+      rules.email(),
+      rules.unique({ table: 'users', column: 'email' }),
+    ]),
     password: schema.string({ trim: true }),
     remember: schema.boolean.optional(),
   })
@@ -26,6 +29,7 @@ export class UserSignupValidation extends BaseValidator {
   public schema = schema.create({
     firstName: schema.string({ trim: true }),
     lastName: schema.string({ trim: true }),
+    acceptTerms: schema.boolean([rules.required()]),
     gender: schema.enum(this.genderValues),
     email: schema.string({ trim: true }, [rules.email()]),
     password: schema.string({ trim: true }),

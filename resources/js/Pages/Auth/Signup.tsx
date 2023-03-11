@@ -8,7 +8,7 @@ const options = [
   { key: 'o', text: 'Other', value: 'other' },
 ]
 
-const Login = () => {
+const Signup = () => {
   const { data, setData, post, processing, errors } = useForm({
     firstName: '',
     lastName: '',
@@ -16,7 +16,7 @@ const Login = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    acceptTerms: false,
+    acceptTerms: true,
   })
 
   const [showPassword, setShowPassword] = useState(false)
@@ -139,6 +139,9 @@ const Login = () => {
                 }
                 label="Accept Terms and Conditions"
               />
+              {errors.acceptTerms && (
+                <div className="text-red-500 text italic mt-1">{errors.acceptTerms[0]}</div>
+              )}
             </Form.Field>
             <Button type="submit" color="blue" fluid>
               Signup
@@ -146,7 +149,7 @@ const Login = () => {
             <div className="mt-4 text-center">
               Already have an account?
               <Link href="/login" className="text-blue-500 ml-2">
-                Please Login
+                Please Signup
               </Link>
             </div>
           </Form>
@@ -156,4 +159,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup

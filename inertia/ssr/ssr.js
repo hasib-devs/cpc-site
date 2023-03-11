@@ -341,7 +341,7 @@ const options = [{
   text: 'Other',
   value: 'other'
 }];
-const Login = () => {
+const Signup = () => {
   const {
     data,
     setData,
@@ -355,7 +355,7 @@ const Login = () => {
     email: '',
     password: '',
     confirmPassword: '',
-    acceptTerms: false
+    acceptTerms: true
   });
   const [showPassword, setShowPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
   const [showConfirmPassword, setShowConfirmPassword] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
@@ -455,7 +455,9 @@ const Login = () => {
       acceptTerms: !prevState.acceptTerms
     })),
     label: "Accept Terms and Conditions"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
+  }), errors.acceptTerms && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.acceptTerms[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Button, {
     type: "submit",
     color: "blue",
     fluid: true
@@ -464,9 +466,9 @@ const Login = () => {
   }, "Already have an account?", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
     href: "/login",
     className: "text-blue-500 ml-2"
-  }, "Please Login"))))));
+  }, "Please Signup"))))));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Login);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Signup);
 
 /***/ }),
 

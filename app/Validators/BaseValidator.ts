@@ -22,6 +22,8 @@ export default class BaseValidator {
       if (rule === 'uuid') return `${f} must be a Valid UUID`
       if (rule === 'json') return `${f} must be a Valid JSON String`
 
+      if (rule === 'unique') return `${f} already exists`
+
       if (rule === 'min') return `${f} must be at least ${field} characters`
       if (rule === 'max') return `${f} must be at most ${field} characters`
 

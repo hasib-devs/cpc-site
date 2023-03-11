@@ -1,4 +1,5 @@
-import { ResponsiveAttachment } from '@ioc:Adonis/Addons/ResponsiveAttachment'
+import Mail from '@ioc:Adonis/Addons/Mail'
+import Hash from '@ioc:Adonis/Core/Hash'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
 import { BaseLoginValidator, UserSignupValidation } from 'App/Validators/AuthValidator'
@@ -52,12 +53,29 @@ export default class WebAuthsController {
 
   // User Register
   public async signup({ response, request, inertia, session }: HttpContextContract) {
-    await request.validate(UserSignupValidation)
+    const payload = await request.validate(UserSignupValidation)
+
+    if (!payload.acceptTerms) {
+      session.flash('errors', { acceptTerms: ['You must accept the terms and conditions'] })
+      return inertia.redirectBack()
+    }
 
     try {
-      await User.create(
+      const user = await User.create(
         request.only(['firstName', 'lastName', 'email', 'phone', 'password', 'gender'])
       )
+
+      await Mail.sendLater(async (message) => {
+        message
+          .from('info@cpc.com')
+          .to(user.email)
+          .subject('Email Verification')
+          .htmlView('emails/email-vefify', {
+            user: user,
+            url: `http://localhost:3333/verify-email`,
+            token: await Hash.make(user.password),
+          })
+      })
 
       session.flash('info', {
         verifyEmailMessage: 'Please verify your email address',
@@ -83,5 +101,19 @@ export default class WebAuthsController {
   // Reset Password view
   public async resetPasswordView({ inertia }: HttpContextContract) {
     return inertia.render('Auth/ResetPassword')
+  }
+
+  // Verify Email
+  public async verifyEmail({ response, request }: HttpContextContract, user: User) {
+    const token = request.input('token')
+    const verified = await Hash.verify(user.username, token)
+    if (verified) {
+      user.emailVerified = true
+      await user.save()
+
+      return response.redirect('/')
+    }
+
+    return response.badRequest('Invalid Token')
   }
 }
