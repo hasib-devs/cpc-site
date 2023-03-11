@@ -34,7 +34,7 @@ export default class Token extends BaseModel {
       return token
     }
 
-    await Token.expire(user)
+    await Token.expirePasswordResetToken(user)
     const record = await user.related('tokens').create({
       type,
       token,
@@ -44,7 +44,7 @@ export default class Token extends BaseModel {
     return record.token
   }
 
-  public static async expire(user: User) {
+  public static async expirePasswordResetToken(user: User) {
     await user.related('passwordResetTokens').query().update({ expiresAt: DateTime.now() })
   }
 

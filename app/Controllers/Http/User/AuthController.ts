@@ -113,7 +113,7 @@ export default class WebAuthsController {
     }
 
     await user.merge({ emailVerified: true }).save()
-    await Token.expire(user)
+
     await auth.login(user)
 
     session.flash('info', {
@@ -186,7 +186,7 @@ export default class WebAuthsController {
     }
 
     await user.merge({ password }).save()
-    await Token.expire(user)
+    await Token.expirePasswordResetToken(user)
     await auth.login(user)
 
     return response.redirect('/')
