@@ -1,3 +1,4 @@
+import { bind } from '@adonisjs/route-model-binding'
 import Mail from '@ioc:Adonis/Addons/Mail'
 import Hash from '@ioc:Adonis/Core/Hash'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
@@ -17,6 +18,15 @@ export default class WebAuthsController {
   // User Login Post
   public async login({ response, request, auth, inertia, session }: HttpContextContract) {
     const payload = await request.validate(BaseLoginValidator)
+
+    const user = await User.findBy('email', payload.email)
+    if (!user?.emailVerified) {
+      session.flash('info', {
+        verifyEmailRequired: 'Please verify your email address',
+      })
+
+      return inertia.redirectBack()
+    }
 
     try {
       await auth.use('user').attempt(payload.email, payload.password, !!payload.remember)
@@ -72,8 +82,9 @@ export default class WebAuthsController {
           .subject('Email Verification')
           .htmlView('emails/email-vefify', {
             user: user,
-            url: `http://localhost:3333/verify-email`,
-            token: await Hash.make(user.password),
+            url: `http://localhost:3333/verify-email/${user.id}?token=${await Hash.make(
+              user.username
+            )}`,
           })
       })
 
@@ -104,9 +115,12 @@ export default class WebAuthsController {
   }
 
   // Verify Email
+  @bind()
   public async verifyEmail({ response, request }: HttpContextContract, user: User) {
     const token = request.input('token')
-    const verified = await Hash.verify(user.username, token)
+    console.log({ token, username: user.username })
+
+    const verified = await Hash.verify(token, user.username)
     if (verified) {
       user.emailVerified = true
       await user.save()

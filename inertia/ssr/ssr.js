@@ -221,7 +221,10 @@ const Login = () => {
   const handleLogin = () => {
     post('/login');
   };
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
+    as: "h2",
+    className: "text-center mb-4"
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("section", {
     className: "flex flex-col items-center mt-16"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6"
@@ -231,10 +234,11 @@ const Login = () => {
     success: true,
     header: "Account created successfully",
     content: "Please verify your email address"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Header, {
-    as: "h2",
-    className: "text-center mb-4"
-  }, "Login"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }), info?.verifyEmailRequired && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Message, {
+    warning: true,
+    header: "Please verify your email address",
+    content: "We've send you an email with a link to verify your email, please click that link to continue."
+  }), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
   }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form, {
     onSubmit: handleLogin,
@@ -387,14 +391,18 @@ const Signup = () => {
     onChange: e => setData('firstName', e.target.value),
     fluid: true,
     placeholder: "First name"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+  }), errors.firstName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.firstName[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Last Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Input, {
     value: data.lastName,
     onChange: e => setData('lastName', e.target.value),
     fluid: true,
     placeholder: "Last name"
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
+  }), errors.lastName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "text-red-500 text italic mt-1"
+  }, errors.lastName[0]))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
     required: true
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", null, "Gender"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Select, {
     value: data.gender,
@@ -403,7 +411,6 @@ const Signup = () => {
     }) => setData('gender', value),
     fluid: true,
     options: options,
-    placeholder: "Gender",
     error: Boolean(errors.gender)
   }), errors.gender && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-red-500 text italic mt-1"

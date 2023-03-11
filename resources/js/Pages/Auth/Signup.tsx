@@ -48,6 +48,10 @@ const Signup = () => {
                   fluid
                   placeholder="First name"
                 />
+
+                {errors.firstName && (
+                  <div className="text-red-500 text italic mt-1">{errors.firstName[0]}</div>
+                )}
               </Form.Field>
               <Form.Field required>
                 <label>Last Name</label>
@@ -57,6 +61,10 @@ const Signup = () => {
                   fluid
                   placeholder="Last name"
                 />
+
+                {errors.lastName && (
+                  <div className="text-red-500 text italic mt-1">{errors.lastName[0]}</div>
+                )}
               </Form.Field>
             </Form.Group>
 
@@ -67,7 +75,6 @@ const Signup = () => {
                 onChange={(_, { value }) => setData('gender', value as string)}
                 fluid
                 options={options}
-                placeholder="Gender"
                 error={Boolean(errors.gender)}
               />
               {errors.gender && (
