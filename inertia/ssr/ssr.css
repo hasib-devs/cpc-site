@@ -828,6 +828,18 @@ video {
 .mt-4{
   margin-top: 1rem;
 }
+.mt-2{
+  margin-top: 0.5rem;
+}
+.mb-10{
+  margin-bottom: 2.5rem;
+}
+.mb-16{
+  margin-bottom: 4rem;
+}
+.mb-8{
+  margin-bottom: 2rem;
+}
 .flex{
   display: flex;
 }
@@ -857,6 +869,9 @@ video {
 }
 .text-center{
   text-align: center;
+}
+.text-end{
+  text-align: end;
 }
 .italic{
   font-style: italic;

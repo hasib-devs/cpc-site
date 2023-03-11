@@ -32,7 +32,7 @@ export class UserSignupValidation extends BaseValidator {
       rules.email(),
       rules.unique({ table: 'users', column: 'email' }),
     ]),
-    password: schema.string({ trim: true }),
+    password: schema.string({ trim: true }, [rules.minLength(6)]),
     confirmPassword: schema.string({ trim: true }, [rules.confirmed('password')]),
     phone: schema.string.optional({ trim: true }),
     coverImage: schema.file.optional({

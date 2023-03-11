@@ -16,7 +16,9 @@ Route.group(() => {
 
   // Reset Password
   Route.post('reset-password', 'AuthController.resetPassword').as('user.resetPassword')
-  Route.get('reset-password', 'AuthController.resetPasswordView').as('user.resetPasswordView')
+  Route.get('reset-password/:token', 'AuthController.resetPasswordView').as(
+    'user.resetPasswordView'
+  )
 
   // Logout
   Route.post('logout', 'AuthController.logout').as('user.logout')

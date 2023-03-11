@@ -3,7 +3,11 @@ import Mail from '@ioc:Adonis/Addons/Mail'
 import Hash from '@ioc:Adonis/Core/Hash'
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import User from 'App/Models/User'
+import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import { BaseLoginValidator, UserSignupValidation } from 'App/Validators/AuthValidator'
+import Token from 'App/Models/Token'
+import Route from '@ioc:Adonis/Core/Route'
+import Env from '@ioc:Adonis/Core/Env'
 
 export default class WebAuthsController {
   // User Login Show
@@ -99,7 +103,38 @@ export default class WebAuthsController {
   }
 
   // Forgot Password
-  public async forgotPassword({}: HttpContextContract) {}
+  public async forgotPassword({ inertia, request, session }: HttpContextContract) {
+    const { email } = await request.validate({
+      schema: schema.create({
+        email: schema.string({}, [rules.email()]),
+      }),
+    })
+
+    const user = await User.findBy('email', email)
+    const token = await Token.generatePasswordResetToken(user)
+
+    const resetLink = Route.makeUrl('user.resetPasswordView', [token])
+
+    if (user) {
+      await Mail.sendLater(async (message) => {
+        message
+          .from('info@cpc.com')
+          .to(user.email)
+          .subject('Password Reset')
+          .htmlView('emails/password-reset', {
+            user: user,
+            url: `${Env.get('APP_DOMAIN')}${resetLink}`,
+          })
+      })
+    }
+
+    session.flash(
+      'message',
+      'If an account matches the email address you entered, we will send you an email with a link to reset your password shortly.'
+    )
+
+    return inertia.redirectBack()
+  }
 
   // Forgot Password view
   public async forgotPasswordView({ inertia }: HttpContextContract) {
@@ -107,11 +142,35 @@ export default class WebAuthsController {
   }
 
   // Reset Password
-  public async resetPassword({}: HttpContextContract) {}
+  public async resetPassword({ request, session, inertia, response }: HttpContextContract) {
+    const { token, password } = await request.validate({
+      schema: schema.create({
+        token: schema.string(),
+        password: schema.string({}, [rules.minLength(6)]),
+      }),
+    })
+
+    const user = await Token.getPasswordResetUser(token)
+
+    if (!user) {
+      session.flash('info', {
+        message: 'Token expired or associated user not found',
+      })
+
+      return inertia.redirectBack()
+    }
+
+    await user.merge({ password }).save()
+
+    return response.redirect().toRoute('user.loginView')
+  }
 
   // Reset Password view
-  public async resetPasswordView({ inertia }: HttpContextContract) {
-    return inertia.render('Auth/ResetPassword')
+  public async resetPasswordView({ inertia, params }: HttpContextContract) {
+    const token = params.token
+    const isValid = await Token.verify(token)
+
+    return inertia.render('Auth/ResetPassword', { isValid, token })
   }
 
   // Verify Email

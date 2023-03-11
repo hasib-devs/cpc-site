@@ -28,18 +28,18 @@ const Login = () => {
   }
   return (
     <>
-      <Header as="h2" className="text-center mb-4">
-        Login
-      </Header>
-
-      <section className="flex flex-col items-center mt-16">
+      <section className="flex flex-col items-center">
         <div className="w-full sm:w-2/3 md:w-1/2 xl:w-2/5 p-6">
           <div className="border rounded p-8">
+            <Header as="h2" className="text-center mb-4">
+              Login
+            </Header>
             {info?.verifyEmailMessage && (
               <Message
                 success
                 header="Account created successfully"
                 content="Please verify your email address"
+                className="mb-10"
               />
             )}
             {info?.verifyEmailRequired && (
@@ -47,6 +47,7 @@ const Login = () => {
                 warning
                 header="Please verify your email address"
                 content="We've send you an email with a link to verify your email, please click that link to continue."
+                className="mb-10"
               />
             )}
 
@@ -85,6 +86,12 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   error={Boolean(errors.password)}
                 />
+                <div className="text-end mt-1">
+                  <Link href="/forgot-password" className="text-blue-500 mt-2">
+                    Forgot password?
+                  </Link>
+                </div>
+
                 {errors.password && (
                   <div className="text-red-500 text italic mt-1">{errors.password[0]}</div>
                 )}
