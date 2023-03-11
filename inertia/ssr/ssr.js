@@ -490,15 +490,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Home = () => {
+  const {
+    user,
+    isAuthenticated
+  } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "flex justify-between mt-20"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Header, {
     as: "h1"
-  }, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+  }, "Home"), isAuthenticated ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+    href: "/logout",
+    method: "POST"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
+    secondary: true
+  }, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
     href: "/login"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
     primary: true
-  }, "Login"))));
+  }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("h2", null, user?.first_name, " ", user?.last_name));
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Home);
 
