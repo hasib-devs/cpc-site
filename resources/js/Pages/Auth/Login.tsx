@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Checkbox, Form, Header, Icon, Input, Message } from 'semantic-ui-react'
 import { useForm, Link, usePage } from '@inertiajs/inertia-react'
-import { toast } from 'react-hot-toast'
 import { PageProps } from '@inertiajs/inertia'
 
 interface InfoType {

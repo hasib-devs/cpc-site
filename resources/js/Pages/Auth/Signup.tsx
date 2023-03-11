@@ -46,7 +46,9 @@ const Signup = () => {
                   value={data.firstName}
                   onChange={(e) => setData('firstName', e.target.value)}
                   fluid
+                  autoFocus
                   placeholder="First name"
+                  type="text"
                 />
 
                 {errors.firstName && (
@@ -60,6 +62,7 @@ const Signup = () => {
                   onChange={(e) => setData('lastName', e.target.value)}
                   fluid
                   placeholder="Last name"
+                  type="text"
                 />
 
                 {errors.lastName && (
@@ -87,7 +90,6 @@ const Signup = () => {
                 value={data.email}
                 onChange={(e) => setData('email', e.target.value)}
                 placeholder="Enter your email"
-                autoFocus
                 type="email"
                 error={Boolean(errors.email)}
               />

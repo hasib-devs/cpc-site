@@ -22,10 +22,11 @@ export class UserSignupValidation extends BaseValidator {
   }
 
   public genderValues = ['male', 'female', 'other']
+  public nameRules = rules.regex(/^(?=.*[a-zA-Z])[a-zA-Z0-9 ]+$/)
 
   public schema = schema.create({
-    firstName: schema.string({ trim: true }),
-    lastName: schema.string({ trim: true }),
+    firstName: schema.string({ trim: true }, [this.nameRules]),
+    lastName: schema.string({ trim: true }, [this.nameRules]),
     acceptTerms: schema.boolean([rules.required()]),
     gender: schema.enum(this.genderValues),
     email: schema.string({ trim: true }, [

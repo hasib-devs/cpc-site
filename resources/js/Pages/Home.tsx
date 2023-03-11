@@ -1,7 +1,7 @@
 import { PageProps } from '@inertiajs/inertia'
 import { Link, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-import { Button, Container, Header } from 'semantic-ui-react'
+import { Button, Container, Header, Message } from 'semantic-ui-react'
 
 interface User {
   id: number
@@ -18,21 +18,35 @@ interface User {
   coverImage: {}
 }
 
+interface InfoType {
+  verifyEmailSuccess: string
+}
+
 interface HomePageProps extends PageProps {
   user?: User
   isAuthenticated?: boolean
+  info?: InfoType
 }
 
 const Home = () => {
-  const { user, isAuthenticated }: HomePageProps = usePage().props
+  const { user, isAuthenticated, info }: HomePageProps = usePage().props
 
   return (
     <Container>
+      {info?.verifyEmailSuccess && (
+        <Message
+          success
+          header="Welcome to CPC"
+          content="Congratulations! Your Email has been Verified"
+          className="mb-10"
+        />
+      )}
+
       <div className="flex justify-between mt-20">
         <Header as="h1">Home</Header>
 
         {isAuthenticated ? (
-          <Link href="/logout" method="POST">
+          <Link href="/logout" method="post">
             <Button secondary>Logout</Button>
           </Link>
         ) : (

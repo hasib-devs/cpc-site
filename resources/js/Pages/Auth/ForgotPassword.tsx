@@ -1,9 +1,15 @@
-import { useForm } from '@inertiajs/inertia-react'
+import { PageProps } from '@inertiajs/inertia'
+import { useForm, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-import { Button, Form, Header, Input } from 'semantic-ui-react'
+import { Button, Form, Header, Input, Message } from 'semantic-ui-react'
+
+interface ForgotPageProps extends PageProps {
+  message?: string
+}
 
 const ForgotPassword = () => {
-  const { data, setData, post, processing, errors } = useForm({
+  const { message }: ForgotPageProps = usePage().props
+  const { data, setData, post, processing, errors, wasSuccessful } = useForm({
     email: '',
   })
 
@@ -26,26 +32,37 @@ const ForgotPassword = () => {
               <div className="text-red-500 text italic mt-1">{errors['invalid'][0]}</div>
             )}
 
-            <Form onSubmit={handleSubmit} loading={processing} size="large">
-              <Form.Field required>
-                <label>Email</label>
-                <Input
-                  value={data.email}
-                  onChange={(e) => setData('email', e.target.value)}
-                  placeholder="Enter your email"
-                  autoFocus
-                  type="email"
-                  error={Boolean(errors.email)}
-                />
-                {errors.email && (
-                  <div className="text-red-500 text italic mt-1">{errors.email[0]}</div>
-                )}
-              </Form.Field>
+            {message && (
+              <Message
+                success
+                header="Please check your mail"
+                content={message}
+                className="mb-10"
+              />
+            )}
 
-              <Button disabled={!data.email} type="submit" color="blue" fluid>
-                Send
-              </Button>
-            </Form>
+            {!wasSuccessful && (
+              <Form onSubmit={handleSubmit} loading={processing} size="large">
+                <Form.Field required>
+                  <label>Email</label>
+                  <Input
+                    value={data.email}
+                    onChange={(e) => setData('email', e.target.value)}
+                    placeholder="Enter your email"
+                    autoFocus
+                    type="email"
+                    error={Boolean(errors.email)}
+                  />
+                  {errors.email && (
+                    <div className="text-red-500 text italic mt-1">{errors.email[0]}</div>
+                  )}
+                </Form.Field>
+
+                <Button disabled={!data.email} type="submit" color="blue" fluid>
+                  Send
+                </Button>
+              </Form>
+            )}
           </div>
         </div>
       </section>

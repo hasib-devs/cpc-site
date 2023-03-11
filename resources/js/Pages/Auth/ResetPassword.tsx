@@ -1,9 +1,11 @@
 import { PageProps } from '@inertiajs/inertia'
 import { Link, useForm, usePage } from '@inertiajs/inertia-react'
 import React from 'react'
-import { Button, Form, Header, Input } from 'semantic-ui-react'
+import { Button, Form, Header, Input, Message } from 'semantic-ui-react'
 
-interface InfoType {}
+interface InfoType {
+  invalid?: string
+}
 
 interface ForgotPageProps extends PageProps {
   info?: InfoType
@@ -12,8 +14,8 @@ interface ForgotPageProps extends PageProps {
   }
 }
 
-const ForgotPassword = () => {
-  const { params }: ForgotPageProps = usePage().props
+const ResetPassword = () => {
+  const { params, info }: ForgotPageProps = usePage().props
 
   const { data, setData, post, processing, errors } = useForm({
     password: '',
@@ -33,41 +35,52 @@ const ForgotPassword = () => {
             <Header as="h2" className="text-center mb-4">
               Reset Password
             </Header>
-            <p className="mb-8">Enter your new password below</p>
 
-            {errors['invalid'] && (
-              <div className="text-red-500 text italic mt-1">{errors['invalid'][0]}</div>
+            {info?.invalid && (
+              <Message
+                success
+                header="Something went wrong"
+                content={
+                  <p>
+                    Your token is invalid or expired.
+                    <Link href="/forgot-password">Please try again</Link>
+                  </p>
+                }
+                className="mb-10"
+              />
             )}
 
-            <Form onSubmit={handleSubmit} loading={processing} size="large">
-              <Form.Field required>
-                <label>New Password</label>
-                <Input
-                  value={data.password}
-                  onChange={(e) => setData('password', e.target.value)}
-                  placeholder="Enter your new password"
-                  autoFocus
-                  type="password"
-                  error={Boolean(errors.password)}
-                />
-                {errors.password && (
-                  <div className="text-red-500 text italic mt-1">{errors.password[0]}</div>
-                )}
-              </Form.Field>
+            {errors['invalid'] && (
+              <div className="text-red-500 text italic mt-1">{errors['invalid']}</div>
+            )}
 
-              <Button disabled={!data.password} type="submit" color="blue" fluid>
-                Reset
-              </Button>
-            </Form>
+            {!info?.invalid && (
+              <Form onSubmit={handleSubmit} loading={processing} size="large">
+                <Form.Field required>
+                  <label>New Password</label>
+                  <Input
+                    value={data.password}
+                    onChange={(e) => setData('password', e.target.value)}
+                    placeholder="Enter your new password"
+                    autoFocus
+                    type="password"
+                    error={Boolean(errors.password)}
+                  />
+                  {errors.password && (
+                    <div className="text-red-500 text italic mt-1">{errors.password[0]}</div>
+                  )}
+                </Form.Field>
+
+                <Button disabled={!data.password} type="submit" color="blue" fluid>
+                  Reset
+                </Button>
+              </Form>
+            )}
           </div>
-
-          <p>
-            Your token is invalid or expired. <Link href="/forgot-password">Please try again</Link>{' '}
-          </p>
         </div>
       </section>
     </>
   )
 }
 
-export default ForgotPassword
+export default ResetPassword

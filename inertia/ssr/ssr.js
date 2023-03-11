@@ -184,11 +184,15 @@ __webpack_require__.r(__webpack_exports__);
 
 const ForgotPassword = () => {
   const {
+    message
+  } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props;
+  const {
     data,
     setData,
     post,
     processing,
-    errors
+    errors,
+    wasSuccessful
   } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.useForm)({
     email: ''
   });
@@ -209,7 +213,12 @@ const ForgotPassword = () => {
     className: "mb-8"
   }, "Enter your email below and we'll send you a password reset link"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
-  }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Form, {
+  }, errors['invalid'][0]), message && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Message, {
+    success: true,
+    header: "Please check your mail",
+    content: message,
+    className: "mb-10"
+  }), !wasSuccessful && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Form, {
     onSubmit: handleSubmit,
     loading: processing,
     size: "large"
@@ -371,9 +380,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   const {
-    params
+    params,
+    info
   } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props;
   const {
     data,
@@ -398,11 +408,16 @@ const ForgotPassword = () => {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Header, {
     as: "h2",
     className: "text-center mb-4"
-  }, "Reset Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", {
-    className: "mb-8"
-  }, "Enter your new password below"), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+  }, "Reset Password"), info?.invalid && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Message, {
+    success: true,
+    header: "Something went wrong",
+    content: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Your token is invalid or expired.", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+      href: "/forgot-password"
+    }, "Please try again")),
+    className: "mb-10"
+  }), errors['invalid'] && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
-  }, errors['invalid'][0]), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Form, {
+  }, errors['invalid']), !info?.invalid && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Form, {
     onSubmit: handleSubmit,
     loading: processing,
     size: "large"
@@ -422,11 +437,9 @@ const ForgotPassword = () => {
     type: "submit",
     color: "blue",
     fluid: true
-  }, "Reset"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("p", null, "Your token is invalid or expired. ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
-    href: "/forgot-password"
-  }, "Please try again"), ' '))));
+  }, "Reset"))))));
 };
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ForgotPassword);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ResetPassword);
 
 /***/ }),
 
@@ -507,7 +520,9 @@ const Signup = () => {
     value: data.firstName,
     onChange: e => setData('firstName', e.target.value),
     fluid: true,
-    placeholder: "First name"
+    autoFocus: true,
+    placeholder: "First name",
+    type: "text"
   }), errors.firstName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
   }, errors.firstName[0])), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
@@ -516,7 +531,8 @@ const Signup = () => {
     value: data.lastName,
     onChange: e => setData('lastName', e.target.value),
     fluid: true,
-    placeholder: "Last name"
+    placeholder: "Last name",
+    type: "text"
   }), errors.lastName && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "text-red-500 text italic mt-1"
   }, errors.lastName[0]))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_1__.Form.Field, {
@@ -537,7 +553,6 @@ const Signup = () => {
     value: data.email,
     onChange: e => setData('email', e.target.value),
     placeholder: "Enter your email",
-    autoFocus: true,
     type: "email",
     error: Boolean(errors.email)
   }), errors.email && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
@@ -618,15 +633,21 @@ __webpack_require__.r(__webpack_exports__);
 const Home = () => {
   const {
     user,
-    isAuthenticated
+    isAuthenticated,
+    info
   } = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.usePage)().props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Container, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Container, null, info?.verifyEmailSuccess && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Message, {
+    success: true,
+    header: "Welcome to CPC",
+    content: "Congratulations! Your Email has been Verified",
+    className: "mb-10"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement("div", {
     className: "flex justify-between mt-20"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Header, {
     as: "h1"
   }, "Home"), isAuthenticated ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
     href: "/logout",
-    method: "POST"
+    method: "post"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(semantic_ui_react__WEBPACK_IMPORTED_MODULE_2__.Button, {
     secondary: true
   }, "Logout")) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {

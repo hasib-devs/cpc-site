@@ -105,7 +105,7 @@ export default class WebAuthsController {
 
   // Verify Email
   @bind()
-  public async verifyEmail({ response, params, auth }: HttpContextContract) {
+  public async verifyEmail({ response, params, auth, session }: HttpContextContract) {
     const user = await Token.getUser(params.token, 'email-verify')
 
     if (!user) {
@@ -115,6 +115,10 @@ export default class WebAuthsController {
     await user.merge({ emailVerified: true }).save()
     await Token.expire(user)
     await auth.login(user)
+
+    session.flash('info', {
+      verifyEmailSuccess: 'Email verified successfully',
+    })
 
     return response.redirect('/')
   }
@@ -154,7 +158,12 @@ export default class WebAuthsController {
   }
 
   // Forgot Password view
-  public async forgotPasswordView({ inertia }: HttpContextContract) {
+  public async forgotPasswordView({ inertia, auth, session, response }: HttpContextContract) {
+    if (await auth.use('user').check()) {
+      session.flash('message', 'You are already logged in')
+      return response.redirect().toRoute('/')
+    }
+
     return inertia.render('Auth/ForgotPassword')
   }
 
@@ -171,9 +180,8 @@ export default class WebAuthsController {
 
     if (!user) {
       session.flash('info', {
-        message: 'Token expired or associated user not found',
+        invalid: 'Token expired or associated user not found',
       })
-
       return inertia.redirectBack()
     }
 
@@ -185,7 +193,18 @@ export default class WebAuthsController {
   }
 
   // Reset Password view
-  public async resetPasswordView({ inertia, params }: HttpContextContract) {
+  public async resetPasswordView({
+    inertia,
+    params,
+    auth,
+    session,
+    response,
+  }: HttpContextContract) {
+    if (await auth.use('user').check()) {
+      session.flash('message', 'You are already logged in')
+      return response.redirect().toRoute('/')
+    }
+
     const token = params.token
     const isValid = await Token.verify(token)
 
