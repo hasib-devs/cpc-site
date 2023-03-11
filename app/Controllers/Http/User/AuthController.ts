@@ -84,7 +84,7 @@ export default class WebAuthsController {
 
       await Mail.sendLater(async (message) => {
         message
-          .from('info@cpc.com')
+          .from(Env.get('APP_EMAIL'))
           .to(user.email)
           .subject('Email Verification')
           .htmlView('emails/email-vefify', {
@@ -135,7 +135,7 @@ export default class WebAuthsController {
     if (user) {
       await Mail.sendLater(async (message) => {
         message
-          .from('info@cpc.com')
+          .from(Env.get('APP_EMAIL'))
           .to(user.email)
           .subject('Password Reset')
           .htmlView('emails/password-reset', {
@@ -159,7 +159,7 @@ export default class WebAuthsController {
   }
 
   // Reset Password
-  public async resetPassword({ request, session, inertia, response }: HttpContextContract) {
+  public async resetPassword({ request, session, inertia, response, auth }: HttpContextContract) {
     const { token, password } = await request.validate({
       schema: schema.create({
         token: schema.string(),
@@ -179,8 +179,9 @@ export default class WebAuthsController {
 
     await user.merge({ password }).save()
     await Token.expire(user)
+    await auth.login(user)
 
-    return response.redirect().toRoute('user.loginView')
+    return response.redirect('/')
   }
 
   // Reset Password view
