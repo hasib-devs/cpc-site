@@ -62,7 +62,7 @@ export default class User extends BaseModel {
   public tokens: HasMany<typeof Token>
 
   @hasMany(() => Token, {
-    onQuery: (query) => query.where('type', 'password_reset'),
+    onQuery: (query) => query.where('type', 'password-reset'),
   })
   public passwordResetTokens: HasMany<typeof Token>
 
